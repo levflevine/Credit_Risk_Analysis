@@ -36,12 +36,12 @@ Using the credit card credit dataset from LendingClub, a peer-to-peer lending se
 
 #### Balanced Accuracy Score 
 
-- RandomOverSampler:&emsp&emsp&emsp&emsp 0.65
-- SMOTE:&emsp&emsp&emsp&emsp&emsp&emsp 0.66
-- ClusterCentroids: &emsp&emsp&emsp&emsp 0.54
-- SMOTEENN: &emsp&emsp&emsp&emsp&emsp 0.67
-- BalancedRandomForestClassifier: &emsp 0.79
-- EasyEnsembleClassifier: &emsp&emsp 0.93
+- RandomOverSampler: 0.65
+- SMOTE: 0.66
+- ClusterCentroids: 0.54
+- SMOTEENN: 0.67
+- BalancedRandomForestClassifier:  0.79
+- EasyEnsembleClassifier: 0.93
 
 #### Precision Scores for High Risk Loans
 
@@ -157,27 +157,56 @@ Classification Report:
 
 ## Summary
 
-### Is there any positivity bias for reviews in the Vine program
+Below are the conclusions by each ML model:
 
-Summary Statistics for the non-Vine reviews with a 5-Star Rating
+### RandomOverSampler    
 
-![Free_Summary Stats](/Resources/free_summary_stats.png)
+From the confusion matrix results, the **Precision** for the high-risk loan applications is **extremely low (1)**, indicating a large number of false positives, which indicates an unreliable positive classification. While the other metrics seems OK, including the reasonable **F1 score of 73** and **Balanced Accuracy Score of 65**, **the model is not recommended to be practically used** in predicting the credit risk and approving/rejecting the loans. If the bank used the model, it would reject too many low-risk applications (99% of the rejected applications should have been approved) and loose too much business,manmy low-risk customers, which will impact customer acquisition/retention and market share.
 
-Summary Statistics for the Vine-participating reviews with a 5-Star Rating
+### SMOTE        
 
-![Paid_Summary_Stats](/Resources/paid_summary_stats.png)
+The SMOTE model shows sligh improvements in comparison to the RandomOverSampler model. However, it suffers same defficiencies that make it impractical for the real-life bank application. 
 
-**Initial Conclusion**. There is some level of positivity bias for the reviews in the Vine Program:  the mean of the ratings from the people participating in the Vine Program is 4.09/5.00 versus the mean of the ratings from the people, who dont' participate in the Vine program: 3.65/5.00. People in the Vine program, who are getting paid for providign the reviews, tend to provide better ratings. This initial conclusion needs to be statistically validated.
+From the confusion matrix results, the **Precision** for the high-risk loan applications is **extremely low (1)**, indicating a large number of false positives, which indicates an unreliable positive classification. While the other metrics seems OK, including the reasonable **F1 score of 81** and **Balanced Accuracy Score of 66**, **the model is not recommended to be practically used** in predicting the credit risk and approving/rejecting the loans. If the bank used the model, it would reject too many low-risk applications (99% of the rejected applications should have been approved) and loose too much business,manmy low-risk customers, which will impact customer acquisition/retention and market share.
 
-### One additional analysis with the dataset to support the conclusion
+### ClusterCentroids 
 
-To validate the conclusion above, we need to perform a two-sample T-Test that will help to determine if the ratings for people in and out of the Vine program are statistically different. 
+The ClusterCentroids undersampling model demonstarted inferior results in comparion to the two previous oversampling models (RandomOverSampler and SMOTE). 
 
-![T-Test Summary](/Resources/2-sample-t-test.png)
+From the confusion matrix results, the **Precision** for the high-risk loan applications is **extremely low (1)**, indicating a large number of false positives, which indicates an unreliable positive classification. The other metrics seems rather low, including the **F1 score of 56** and **Balanced Accuracy Score of 54**, and as a result, **the model is not recommended to be practically used** in predicting the credit risk and approving/rejecting the loans. If the bank used the model, it would reject too many low-risk applications (99% of the rejected applications should have been approved) and loose too much business,manmy low-risk customers, which will impact customer acquisition/retention and market share.
 
-**Conclusion**: Based on the **0.05 significance level**, there is **no statistical difference** of the review ratings mean for the people in the Vine program and the review ratings mean for the people not enrolled the Vine program: 
+### SMOTEENN      
 
-- **the p-value = 1.78e-20, which is below our significance level**.
+The SMOTEENN cobination sampling model demonstarted inferior results in comparion to the two oversampling models (RandomOverSampler and SMOTE), but better results than the undersampling model (ClusterCentroids). 
 
-**Hence, we cannot reject the Null Hypothesis and the final conclusion is that there is no statistically significant positivity bias for the reviews in the Vine Program. People, both in and out of the Vine program, tend to provide statistically comparable reviews regardless or whether or not they are being paid.**
+From the confusion matrix results, the **Precision** for the high-risk loan applications is **extremely low (1)**, indicating a large number of false positives, which indicates an unreliable positive classification. While the other metrics seems OK, including the reasonable **F1 score of 75** and **Balanced Accuracy Score of 67**, **the model is not recommended to be practically used** in predicting the credit risk and approving/rejecting the loans. If the bank used the model, it would reject too many low-risk applications (99% of the rejected applications should have been approved) and loose too much business,manmy low-risk customers, which will impact customer acquisition/retention and market share.
+
+### BalancedRandomForestClassifier
+
+The BalancedRandomForestClassifier ensemble learning model demonstarted significantly higher results in comparion to all the previous models. However, it still suffers from extremely low precision and is not recommended.
+
+From the confusion matrix results, the **Precision** for the high-risk loan applications is **extremely low (3)**, indicating a large number of false positives, which indicates an unreliable positive classification. While the other metrics seems solid, including the high **F1 score of 93** and **Balanced Accuracy Score of 79**, **the model is not recommended to be practically used** in predicting the credit risk and approving/rejecting the loans. If the bank used the model, it would reject too many low-risk applications (97% of the rejected applications should have been approved) and loose too much business,manmy low-risk customers, which will impact customer acquisition/retention and market share.
+
+### EasyEnsembleClassifier        
+
+The EasyEnsembleClassifier demonstrated best results out the models explored in this project. It still has significant defficiencies, but after additional cost-benefit analysis and validation and/or in combination with additional risk assurance processes, it could potentially be used by the bank.
+
+From the confusion matrix results, the **Precision** for the high-risk loan applications is **low (9)**, indicating a large number of false positives, which indicates an unreliable positive classification. The other metrics is solid, including a very high **F1 score of 97** and **Balanced Accuracy Score of 93**. 
+
+To further validate the feasibility of the using the model, it is necessary to conduct the following cost-benefit analysis:
+
+1. Evaluate the **average revenue per user (ARPU)** and **profit margin per user** - how much revenue and profit each credit card customer generates to the bank on average
+2. Multiply the average profit margin per user by the number of erroneously rejected low-risk customers
+3. *This will generate the loss that the bank will incure if it were to implement and blindly follow the recommendations of the model*
+4. Evaluate the average loss per high-risk customer
+5. Multiply by the number of true high-risk customers
+6. *This will generate the loss that the bank will incure if it accepted all the applications and did not perform any risk analysis*
+7. **Compare Line # 3 and Line # 6. If the loss in # 6 is lower than the loss in # 3, the bank should not use the model.**
+8. **If the opposite is true, the model will generate incremental benefits to the bank and can be used.** 
+
+If the model is used, it could be applied in combination with additional processes that will reduce the level of false-positive high risk classifications. This can be accomplished, for instance, by sending requests for additional evidence to the applicants classified as high-risk, before rejecting their application. The process to collect additional evidence can signifciantly improve the precision of high-risk classification.
+
+In addition, the bank could reengineer the model features and take out the least important ones that create noise to the model to improve the model performance.
+
+
 
