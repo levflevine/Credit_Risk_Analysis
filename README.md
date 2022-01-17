@@ -26,14 +26,13 @@ Using the credit card credit dataset from LendingClub, a peer-to-peer lending se
 - Sklearn Library
 - Imblearn Library
 
-
 #### Data Sources
 
 - [Credit card credit dataset from LendingClub](https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-online/module_17/Module-17-Challenge-Resources.zip)
 
 ## Results
 
-### Results Summary
+### Key Metrics
 
 #### Balanced Accuracy Score 
 
@@ -80,7 +79,81 @@ Using the credit card credit dataset from LendingClub, a peer-to-peer lending se
 - BalancedRandomForestClassifier:   0.87
 - EasyEnsembleClassifier:           0.94
 
-![Results](/Resources/vine_reviews_5_star.png)
+### Result Details
+
+#### RandomOverSampler
+
+Balanced Accuracy Score:
+
+![BalancedAccuracyScore](/Resources/Random_Over_Sampler_Balanced_Accuracy_Score.png)
+
+Confusion Matrix:
+
+![ConfusionMatrix](/Resources/Random_Over_Sampler_Confusion_Matrix.png)
+
+Classification Report:
+
+![ClassificationReport](/Resources/Random_Over_Sampler_Classification_Report.png)
+
+#### SMOTE
+
+![BalancedAccuracyScore](/Resources/SMOTE_Balanced_Accuracy_Score.png)
+
+Confusion Matrix:
+
+![ConfusionMatrix](/Resources/SMOTE_Confusion_Matrix.png)
+
+Classification Report:
+
+![ClassificationReport](/Resources/SMOTE_Classification_Report.png)
+
+#### ClusterCentroids
+
+![BalancedAccuracyScore](/Resources/Cluster_Centroids_Balanced_Accuracy_Score.png)
+
+Confusion Matrix:
+
+![ConfusionMatrix](/Resources/Cluster_Centroids_Confusion_Matrix.png)
+
+Classification Report:
+
+![ClassificationReport](/Resources/Cluster_Centroids_Classification_Report.png)
+
+#### SMOTEENN
+
+![BalancedAccuracyScore](/Resources/SMOTEENN_Balanced_Accuracy_Score.png)
+
+Confusion Matrix:
+
+![ConfusionMatrix](/Resources/SMOTEENN_Confusion_Matrix.png)
+
+Classification Report:
+
+![ClassificationReport](/Resources/SMOTEENN_Classification_Report.png)
+
+#### BalancedRandomForestClassifier
+
+![BalancedAccuracyScore](/Resources/Ensemble_Balanced_Accuracy_Score.png)
+
+Confusion Matrix:
+
+![ConfusionMatrix](/Resources/Ensemble_Confusion_Matrix.png)
+
+Classification Report:
+
+![ClassificationReport](/Resources/Ensemble_Classification_Report.png)
+
+#### EasyEnsembleClassifier
+
+![BalancedAccuracyScore](/Resources/Easy_Ensemble_Balanced_Accuracy_Score.png)
+
+Confusion Matrix:
+
+![ConfusionMatrix](/Resources/Easy_Ensemble_Confusion_Matrix.png)
+
+Classification Report:
+
+![ClassificationReport](/Resources/Easy_Ensemble_Classification_Report.png)
 
 ## Summary
 
