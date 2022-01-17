@@ -193,7 +193,11 @@ The EasyEnsembleClassifier demonstrated best results out the models explored in 
 
 From the confusion matrix results, the **Precision** for the high-risk loan applications is **low (9)**, indicating a large number of false positives, which indicates an unreliable positive classification. The other metrics is solid, including a very high **F1 score of 97** and **Balanced Accuracy Score of 93**. 
 
-To further validate the feasibility of the using the model, it is necessary to conduct the following cost-benefit analysis:
+### Final Recommendation
+
+**The EasyEnsembleClassifier model can be recommended for the use with the following reservations.** 
+
+A further validation of the feasibility of using the EasyEnsembleClassifier model is needed. The validation can include conducting the following cost-benefit analysis:
 
 1. Evaluate the **average revenue per user (ARPU)** and **profit margin per user** - how much revenue and profit each credit card customer generates to the bank on average
 2. Multiply the average profit margin per user by the number of erroneously rejected low-risk customers
