@@ -36,12 +36,12 @@ Using the credit card credit dataset from LendingClub, a peer-to-peer lending se
 
 #### Balanced Accuracy Score 
 
-- RandomOverSampler:                0.65
-- SMOTE:                            0.66
-- ClusterCentroids:                 0.54
-- SMOTEENN:                         0.67
-- BalancedRandomForestClassifier:   0.79
-- EasyEnsembleClassifier:           0.93
+- RandomOverSampler:&emsp&emsp&emsp&emsp 0.65
+- SMOTE:&emsp&emsp&emsp&emsp&emsp&emsp 0.66
+- ClusterCentroids: &emsp&emsp&emsp&emsp 0.54
+- SMOTEENN: &emsp&emsp&emsp&emsp&emsp 0.67
+- BalancedRandomForestClassifier: &emsp 0.79
+- EasyEnsembleClassifier: &emsp&emsp 0.93
 
 #### Precision Scores for High Risk Loans
 
